@@ -410,7 +410,7 @@ if recommended_eps is not None:
     )
 
 if points.shape[1] > 2 and not SCALE_FOR_DBSCAN:
-    st.sidebar.warning("Для данных D>2 лучше включить Scale features for DBSCAN.")
+    st.sidebar.warning("D>2: enable 'Scale features for DBSCAN'.")
 
 dbscan = DBSCAN(eps=actual_eps, min_samples=MIN_SAMPLES)
 
@@ -480,17 +480,14 @@ n_features = points.shape[1]
 if n_features == 1:
     plot_points = np.column_stack([points[:, 0], np.zeros(points.shape[0])])
     plot_centers = np.column_stack([merged_modes[:, 0], np.zeros(merged_modes.shape[0])])
-    projection_note = "Данные 1D: визуализация выполнена в виде x->(x,0)."
+    projection_note = "1D -> (x0, 0)"
 elif n_features == 2:
     plot_points = points
     plot_centers = merged_modes
 else:
     plot_points = points[:, :2]
     plot_centers = merged_modes[:, :2]
-    projection_note = (
-        f"Данные {n_features}D: визуализация показывает только первые две оси (x0, x1). "
-        "Кластеризация выполнена в полном пространстве."
-    )
+    projection_note = f"{n_features}D -> x0,x1 | clustering in full space"
 
 
 # ==========================

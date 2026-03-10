@@ -152,7 +152,8 @@ def draw(
             transform=ax.transAxes,
             va="top",
             ha="left",
-            fontsize=9,
+            fontsize=8,
+            wrap=True,
             bbox=dict(facecolor="white", alpha=0.7, edgecolor="none"),
         )
 
